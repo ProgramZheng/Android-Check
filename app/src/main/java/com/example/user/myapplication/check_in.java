@@ -17,11 +17,10 @@ import java.net.URLEncoder;
 
 public class check_in extends AsyncTask<String, Void, String> {
     private Context context;
-    String id,name;
     boolean status;
 
     //flag 0 means get and 1 means post.(By default it is get.)
-    public check_in(Context context,int flag) {
+    public check_in(Context context) {
         this.context = context;
     }
     protected void onPreExecute(){
@@ -30,14 +29,14 @@ public class check_in extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... arg0) {
             try{
-                String username = (String)arg0[0];
-                String password = (String)arg0[1];
+                String member_id = (String)arg0[0];
+                String flag = (String)arg0[1];
 
-                String link="http://10.0.2.2/check_in/login.php";
-                String data  = URLEncoder.encode("username", "UTF-8") + "=" +
-                        URLEncoder.encode(username, "UTF-8");
-                data += "&" + URLEncoder.encode("password", "UTF-8") + "=" +
-                        URLEncoder.encode(password, "UTF-8");
+                String link="http://10.0.2.2/check_in/check_in.php";
+                String data  = URLEncoder.encode("member_id", "UTF-8") + "=" +
+                        URLEncoder.encode(member_id, "UTF-8");
+                data += "&" + URLEncoder.encode("flag", "UTF-8") + "=" +
+                        URLEncoder.encode(flag, "UTF-8");
 
                 URL url = new URL(link);
                 URLConnection conn = url.openConnection();
@@ -68,24 +67,6 @@ public class check_in extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String result){
-        try {
-            JSONObject jsonObject = new JSONObject(result);
-            JSONObject member = jsonObject.getJSONObject("member");
-            name = member.getString("name");
-            status = jsonObject.getBoolean("status");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        //status==true代表有此帳號密碼
-        if(status) {
-            //初始化Intent物件，並將主畫面變成choose
-            Intent intent = new Intent(context, Main2Activity.class);
-            intent.putExtra("name",name);
-            //開啟Activity
-            context.startActivity(intent);
-        }
-        else{
-            Toast.makeText(context ,"登入失敗", Toast.LENGTH_SHORT).show();
-        }
+        Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
     }
 }

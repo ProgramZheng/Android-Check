@@ -43,11 +43,12 @@ public class clock_on extends Fragment implements LocationListener, OnMapReadyCa
 
 
     private GoogleMap map;
+    String member_id,out_flag;
     LatLng currPoint;
     TextView txv;
     Button btn;
     ImageButton mylocation;
-    int flag;
+    int flag=0;
 
     public clock_on(){
 
@@ -60,6 +61,7 @@ public class clock_on extends Fragment implements LocationListener, OnMapReadyCa
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.clock_on, container, false);
+        member_id = this.getArguments().getString("id");
         /*GPS服務*/
         mgr = (LocationManager)getActivity().getSystemService(LOCATION_SERVICE);
         txv = (TextView) view.findViewById(R.id.txv);
@@ -178,21 +180,26 @@ public class clock_on extends Fragment implements LocationListener, OnMapReadyCa
         btn.setOnClickListener(new View.OnClickListener(){
             @Override
                     public void onClick(View v){
+            /*限定GPS打卡範圍在此座標範圍內*/
+            if (location.getLatitude() > 24.136430 && location.getLatitude() < 24.138533 && location.getLongitude() > 120.607159 && location.getLongitude() < 120.610254) {
+                flag++;
+                Toast.makeText(getActivity(), "GPS打卡成功", Toast.LENGTH_SHORT).show();
                 if(checkIp()=="YES") {
                     flag++;
                     Toast.makeText(getActivity(), "Wifi打卡成功", Toast.LENGTH_SHORT).show();
-                    /*限定GPS打卡範圍在此座標範圍內*/
-                    if (location.getLatitude() > 24.136430 && location.getLatitude() < 24.138533 && location.getLongitude() > 120.607159 && location.getLongitude() < 120.610254) {
-                        flag++;
-                        Toast.makeText(getActivity(), "GPS打卡成功", Toast.LENGTH_SHORT).show();
-                    }
-                    else{
-                        Toast.makeText(getActivity(), "GPS打卡失敗，請確認位置", Toast.LENGTH_SHORT).show();
-                    }
                 }
                 else{
                     Toast.makeText(getActivity(), "Wifi打卡失敗，"+"目前ip為:"+getIp(), Toast.LENGTH_SHORT).show();
                 }
+            }
+            else{
+                Toast.makeText(getActivity(), "GPS打卡失敗，請確認位置", Toast.LENGTH_SHORT).show();
+            }
+
+//                if(flag>0) {
+            out_flag = String.valueOf(flag);
+            new check_in(getActivity()).execute(member_id, out_flag);
+//                }
             }
         });
         mylocation.setOnClickListener(new View.OnClickListener(){

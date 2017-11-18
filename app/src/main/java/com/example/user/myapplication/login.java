@@ -73,6 +73,7 @@ public class login extends AsyncTask<String, Void, String> {
         try {
             JSONObject jsonObject = new JSONObject(result);
             JSONObject member = jsonObject.getJSONObject("member");
+            id = member.getString("id");
             name = member.getString("name");
             status = jsonObject.getBoolean("status");
         } catch (JSONException e) {
@@ -82,12 +83,13 @@ public class login extends AsyncTask<String, Void, String> {
         if(status) {
             //初始化Intent物件，並將主畫面變成choose
             Intent intent = new Intent(context, Main2Activity.class);
+            intent.putExtra("id",id);
             intent.putExtra("name",name);
             //開啟Activity
             context.startActivity(intent);
         }
         else{
-            Toast.makeText(context ,"登入失敗", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context ,"登入失敗，請檢查帳號密碼是否有誤", Toast.LENGTH_SHORT).show();
         }
     }
 }

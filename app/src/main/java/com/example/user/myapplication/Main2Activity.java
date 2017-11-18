@@ -38,8 +38,10 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         Intent intent = this.getIntent();
+        id = intent.getStringExtra("id");
         intent_name = intent.getStringExtra("name");
         bundle = new Bundle();
+        bundle.putString("id",id);
         bundle.putString("name",intent_name);
         //取得toolbar的實體
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -104,6 +106,7 @@ public class Main2Activity extends AppCompatActivity {
                     return tab1;
                 case 1:
                     clock_on tab2 = new clock_on();
+                    tab2.setArguments(bundle);
                     return tab2;
                 case 2:
                     manage tab3 = new manage();
