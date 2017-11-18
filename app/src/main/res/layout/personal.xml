@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="個資"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pertextView"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/pertextView1"
+            android:layout_weight="0"
+            android:layout_height="wrap_content"
+            android:text="班別："
+            android:textColor="@android:color/black"
+            android:textSize="24sp" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pertextView2"
+            android:layout_weight="0"
+            android:textSize="24sp"
+            android:textColor="@android:color/black" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="工號/姓名："
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pertextView3"
+            android:layout_weight="0"
+            android:textColor="@android:color/black"
+            android:textSize="24sp" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pertextView4"
+            android:layout_weight="1"
+            android:textColor="@android:color/black"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="日期："
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pertextView5"
+            android:layout_weight="0"
+            android:textSize="24sp"
+            android:textColor="@android:color/black" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner"
+            android:layout_weight="1" />
+    </LinearLayout>
+</LinearLayout>

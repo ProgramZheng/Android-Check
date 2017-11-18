@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.user.myapplication.Main2Activity">
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="101"
+        android:title="設定" />
+    <item android:title="登出"
+        android:orderInCategory="102"
+        android:id="@+id/log_out" />
+</menu>

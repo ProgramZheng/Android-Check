@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">商用套件App</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_my">MyActivity</string>
+    <string name="title_activity_about">AboutActivity</string>
+    <string name="title_activity_contact">ContactActivity</string>
+    <string name="title_activity_main2">打卡資料</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_maps">Map</string>
+</resources>
