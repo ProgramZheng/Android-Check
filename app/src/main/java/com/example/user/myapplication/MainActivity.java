@@ -43,18 +43,6 @@ public class MainActivity extends AppCompatActivity {
                     String username = eID.getText().toString();
                     String password = Password.getText().toString();
                     new login(getApplicationContext()).execute(username,password);
-//                    Toast toast=Toast.makeText(getApplicationContext(), "登入失敗，請檢查帳號密碼是否有誤", Toast.LENGTH_SHORT);
-//                    for (int i = 0;i<ID.length; i++) {
-//                        if (eID.getText().toString().equals(ID[i])&&Password.getText().toString().equals(Pass[i])) {
-//                                toast.cancel();
-//                                //初始化Intent物件，並將主畫面變成choose
-//                                Intent intent = new Intent(MainActivity.this, choose.class);
-//                                //開啟Activity
-//                                startActivity(intent);
-//                            } else {
-//                                toast.show();
-//                            }
-//                        }
                 }
             });
         }

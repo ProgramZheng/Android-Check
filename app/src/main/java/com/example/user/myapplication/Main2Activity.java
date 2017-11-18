@@ -12,6 +12,10 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 
 public class Main2Activity extends AppCompatActivity {
@@ -27,10 +31,16 @@ public class Main2Activity extends AppCompatActivity {
      */
     public ViewPager mViewPager;
 
+    public String id,intent_name;
+    public Bundle bundle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        Intent intent = this.getIntent();
+        intent_name = intent.getStringExtra("name");
+        bundle = new Bundle();
+        bundle.putString("name",intent_name);
         //取得toolbar的實體
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //使用setSupportActionBar設定將Toolbar取代原本的actionbar
@@ -90,6 +100,7 @@ public class Main2Activity extends AppCompatActivity {
             switch (position) {
                 case 0:
                     personal tab1 = new personal();
+                    tab1.setArguments(bundle);
                     return tab1;
                 case 1:
                     clock_on tab2 = new clock_on();

@@ -34,14 +34,14 @@
             android:textColor="@android:color/black"
             android:textSize="24sp" />
 
-        <TextView
-            android:text="TextView"
+        <EditText
+            android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/pertextView2"
             android:layout_weight="0"
-            android:textSize="24sp"
-            android:textColor="@android:color/black" />
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="請輸入帳號" />
 
     </LinearLayout>
 

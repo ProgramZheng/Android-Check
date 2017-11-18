@@ -3,10 +3,9 @@ package com.example.user.myapplication;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -17,14 +16,15 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
-public class login extends AsyncTask<String, Void, String> {
+public class member extends AsyncTask<String, Void, String> {
     private Context context;
-    String id,name;
-    boolean status;
+    private TextView name;
+    String db_name;
 
     //flag 0 means get and 1 means post.(By default it is get.)
-    public login(Context context) {
+    public member(Context context, TextView name) {
         this.context = context;
+        this.name = name;
     }
     protected void onPreExecute(){
     }
@@ -32,14 +32,11 @@ public class login extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... arg0) {
             try{
-                String username = (String)arg0[0];
-                String password = (String)arg0[1];
+                String id = (String)arg0[0];
 
-                String link="http://10.0.2.2/check_in/login.php";
-                String data  = URLEncoder.encode("username", "UTF-8") + "=" +
-                        URLEncoder.encode(username, "UTF-8");
-                data += "&" + URLEncoder.encode("password", "UTF-8") + "=" +
-                        URLEncoder.encode(password, "UTF-8");
+                String link="http://10.0.2.2/check_in/member.php";
+                String data  = URLEncoder.encode("id", "UTF-8") + "=" +
+                        URLEncoder.encode(id, "UTF-8");
 
                 URL url = new URL(link);
                 URLConnection conn = url.openConnection();
@@ -73,21 +70,10 @@ public class login extends AsyncTask<String, Void, String> {
         try {
             JSONObject jsonObject = new JSONObject(result);
             JSONObject member = jsonObject.getJSONObject("member");
-            name = member.getString("name");
-            status = jsonObject.getBoolean("status");
+            db_name = member.getString("name");
+            this.name.setText(result);
         } catch (JSONException e) {
             e.printStackTrace();
-        }
-        //status==true代表有此帳號密碼
-        if(status) {
-            //初始化Intent物件，並將主畫面變成choose
-            Intent intent = new Intent(context, Main2Activity.class);
-            intent.putExtra("name",name);
-            //開啟Activity
-            context.startActivity(intent);
-        }
-        else{
-            Toast.makeText(context ,"登入失敗", Toast.LENGTH_SHORT).show();
         }
     }
 }

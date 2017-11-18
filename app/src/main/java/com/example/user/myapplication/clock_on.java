@@ -47,7 +47,7 @@ public class clock_on extends Fragment implements LocationListener, OnMapReadyCa
     TextView txv;
     Button btn;
     ImageButton mylocation;
-
+    int flag;
 
     public clock_on(){
 
@@ -179,9 +179,11 @@ public class clock_on extends Fragment implements LocationListener, OnMapReadyCa
             @Override
                     public void onClick(View v){
                 if(checkIp()=="YES") {
+                    flag++;
                     Toast.makeText(getActivity(), "Wifi打卡成功", Toast.LENGTH_SHORT).show();
                     /*限定GPS打卡範圍在此座標範圍內*/
                     if (location.getLatitude() > 24.136430 && location.getLatitude() < 24.138533 && location.getLongitude() > 120.607159 && location.getLongitude() < 120.610254) {
+                        flag++;
                         Toast.makeText(getActivity(), "GPS打卡成功", Toast.LENGTH_SHORT).show();
                     }
                     else{
