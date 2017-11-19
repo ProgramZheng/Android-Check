@@ -195,7 +195,6 @@ public class clock_on extends Fragment implements LocationListener, OnMapReadyCa
             else{
                 Toast.makeText(getActivity(), "GPS打卡失敗，請確認位置", Toast.LENGTH_SHORT).show();
             }
-
 //                if(flag>0) {
             out_flag = String.valueOf(flag);
             new check_in(getActivity()).execute(member_id, out_flag);
