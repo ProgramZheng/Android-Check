@@ -67,6 +67,14 @@ public class check_in extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String result){
-        Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
+        try {
+            JSONObject jsonObject = new JSONObject(result);
+            status = jsonObject.getBoolean("status");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        if(status) {
+            Toast.makeText(context, "今日已打卡完畢", Toast.LENGTH_SHORT).show();
+        }
     }
 }
