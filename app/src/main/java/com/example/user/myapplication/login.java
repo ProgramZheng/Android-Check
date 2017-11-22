@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -19,12 +20,15 @@ import java.net.URLEncoder;
 
 public class login extends AsyncTask<String, Void, String> {
     private Context context;
+    private EditText eID,Password;
     String id,name;
     boolean status;
 
     //flag 0 means get and 1 means post.(By default it is get.)
-    public login(Context context) {
+    public login(Context context, EditText eID, EditText Password) {
         this.context = context;
+        this.eID=eID;
+        this.Password=Password;
     }
     protected void onPreExecute(){
     }
@@ -90,6 +94,8 @@ public class login extends AsyncTask<String, Void, String> {
         }
         else{
             Toast.makeText(context ,"登入失敗，請檢查帳號密碼是否有誤", Toast.LENGTH_SHORT).show();
+            eID.setText("");
+            Password.setText("");
         }
     }
 }

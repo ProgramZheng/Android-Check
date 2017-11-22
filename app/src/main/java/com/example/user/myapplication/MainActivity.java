@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     String username = eID.getText().toString();
                     String password = Password.getText().toString();
-                    new login(getApplicationContext()).execute(username,password);
+                    new login(getApplicationContext(),eID,Password).execute(username,password);
                 }
             });
         }

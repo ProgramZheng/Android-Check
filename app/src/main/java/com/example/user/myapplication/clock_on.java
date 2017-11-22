@@ -179,27 +179,27 @@ public class clock_on extends Fragment implements LocationListener, OnMapReadyCa
         }
         btn.setOnClickListener(new View.OnClickListener(){
             @Override
-                    public void onClick(View v){
-            /*限定GPS打卡範圍在此座標範圍內*/
-            if (location.getLatitude() > 24.136430 && location.getLatitude() < 24.138533 && location.getLongitude() > 120.607159 && location.getLongitude() < 120.610254) {
-                flag++;
-                Toast.makeText(getActivity(), "GPS打卡成功", Toast.LENGTH_SHORT).show();
-                if(checkIp()=="YES") {
+            public void onClick(View v){
+                /*限定GPS打卡範圍在此座標範圍內*/
+                if (location.getLatitude() > 24.136430 && location.getLatitude() < 24.138533 && location.getLongitude() > 120.607159 && location.getLongitude() < 120.610254) {
                     flag++;
-                    Toast.makeText(getActivity(), "Wifi打卡成功", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "GPS打卡成功", Toast.LENGTH_SHORT).show();
+                    if(checkIp()=="YES") {
+                        flag++;
+                        Toast.makeText(getActivity(), "Wifi打卡成功", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(getActivity(), "Wifi打卡失敗，"+"目前ip為:"+getIp(), Toast.LENGTH_SHORT).show();
+                    }
                 }
                 else{
-                    Toast.makeText(getActivity(), "Wifi打卡失敗，"+"目前ip為:"+getIp(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "GPS打卡失敗，請確認位置", Toast.LENGTH_SHORT).show();
                 }
-            }
-            else{
-                Toast.makeText(getActivity(), "GPS打卡失敗，請確認位置", Toast.LENGTH_SHORT).show();
-            }
-//                if(flag>0) {
-            out_flag = String.valueOf(flag);
-            new check_in(getActivity()).execute(member_id, out_flag);
-//                }
-            }
+    //                if(flag>0) {
+                out_flag = String.valueOf(flag);
+                new check_in(getActivity()).execute(member_id, out_flag);
+    //                }
+                }
         });
         mylocation.setOnClickListener(new View.OnClickListener(){
             @Override
