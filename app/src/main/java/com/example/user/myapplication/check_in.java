@@ -3,6 +3,7 @@ package com.example.user.myapplication;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.widget.Button;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -17,11 +18,13 @@ import java.net.URLEncoder;
 
 public class check_in extends AsyncTask<String, Void, String> {
     private Context context;
-    boolean status;
+    int check_number;
+    Button btn;
 
     //flag 0 means get and 1 means post.(By default it is get.)
-    public check_in(Context context) {
+    public check_in(Context context,Button btn) {
         this.context = context;
+        this.btn = btn;
     }
     protected void onPreExecute(){
     }
@@ -69,11 +72,12 @@ public class check_in extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result){
         try {
             JSONObject jsonObject = new JSONObject(result);
-            status = jsonObject.getBoolean("status");
+            check_number = jsonObject.getInt("check_number");
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        if(status) {
+        if(check_number>=1) {
+            btn.setText("今日已打卡完畢");
             Toast.makeText(context, "今日已打卡完畢", Toast.LENGTH_SHORT).show();
         }
     }
