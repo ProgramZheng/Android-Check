@@ -67,6 +67,8 @@ public class clock_on extends Fragment implements LocationListener, OnMapReadyCa
         txv = (TextView) view.findViewById(R.id.txv);
         btn = (Button) view.findViewById(R.id.btn);
         mylocation = (ImageButton) view.findViewById(R.id.mylocation);
+        /*判斷是否能打卡*/
+        new first_check_in(getActivity(), btn).execute(member_id);
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         checkPermission();

@@ -1,7 +1,6 @@
 package com.example.user.myapplication;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Button;
 import android.widget.Toast;
@@ -16,13 +15,13 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
-public class check_in extends AsyncTask<String, Void, String> {
+public class first_check_in extends AsyncTask<String, Void, String> {
     private Context context;
-    int check_work;
+    int check_number;
     Button btn;
 
     //flag 0 means get and 1 means post.(By default it is get.)
-    public check_in(Context context,Button btn) {
+    public first_check_in(Context context, Button btn) {
         this.context = context;
         this.btn = btn;
     }
@@ -33,13 +32,10 @@ public class check_in extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... arg0) {
             try{
                 String member_id = (String)arg0[0];
-                String flag = (String)arg0[1];
 
-                String link="http://10.0.2.2/check_in/check_in.php";
+                String link="http://10.0.2.2/check_in/first_check_in.php";
                 String data  = URLEncoder.encode("member_id", "UTF-8") + "=" +
                         URLEncoder.encode(member_id, "UTF-8");
-                data += "&" + URLEncoder.encode("flag", "UTF-8") + "=" +
-                        URLEncoder.encode(flag, "UTF-8");
 
                 URL url = new URL(link);
                 URLConnection conn = url.openConnection();
@@ -70,13 +66,7 @@ public class check_in extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String result){
-        try {
-            JSONObject jsonObject = new JSONObject(result);
-            check_work = jsonObject.getInt("check_work");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        if(check_work==1) {
+        if(Integer.parseInt(result)==1){
             btn.setEnabled(false);
             btn.setText("今日已打卡完畢");
         }
