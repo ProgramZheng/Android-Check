@@ -5,17 +5,21 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 public class personal extends Fragment {
     private TextView name;
+    private TableLayout data;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.personal, container, false);
-        String get_name = this.getArguments().getString("name");
+        String get_id = this.getArguments().getString("id");
         name = (TextView) rootView.findViewById(R.id.name);
-        name.setText(get_name);
+        data = (TableLayout) rootView.findViewById(R.id.data);
+        new member(getActivity(),name,data).execute(get_id);
         return rootView;
     }
 }
