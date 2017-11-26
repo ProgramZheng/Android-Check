@@ -83,9 +83,8 @@ public class member extends AsyncTask<String, Void, String> {
             JSONObject member = new JSONObject(jsonObject.getString("member"));
             String name = member.getString("name");
             JSONArray now_month_data = new JSONArray(jsonObject.getString("now_month_data"));
-            TableRow status_on_head[] = new TableRow[now_month_data.length()];
-            TextView[] status_on_array = new TextView[now_month_data.length()];
-            TableRow work_on_time_head[] = new TableRow[now_month_data.length()];
+            TableRow tr_head[] = new TableRow[now_month_data.length()];
+            TextView[] textArray = new TextView[now_month_data.length()];
             TextView[] work_on_time_array = new TextView[now_month_data.length()];
             HashMap<String, String> map = new HashMap<String,String>();
             for (int i=0;i<now_month_data.length();i++) {
@@ -94,31 +93,22 @@ public class member extends AsyncTask<String, Void, String> {
                 String work_on_time = now_month_data.getJSONObject(i).getString("work_on_time");
                 String work_off_time = now_month_data.getJSONObject(i).getString("work_off_time");
                 String work_time = now_month_data.getJSONObject(i).getString("work_time");
-                status_on_head[i] = new TableRow(context);
-                status_on_head[i].setBackgroundColor(Color.GRAY);        // part1
-                status_on_head[i].setLayoutParams(new TableLayout.LayoutParams(
+                tr_head[i] = new TableRow(context);
+                tr_head[i].setBackgroundColor(Color.GRAY);        // part1
+                tr_head[i].setLayoutParams(new TableLayout.LayoutParams(
                         TableLayout.LayoutParams.MATCH_PARENT,
                         TableLayout.LayoutParams.WRAP_CONTENT));
-                status_on_array[i] = new TextView(context);
-                status_on_array[i].setText(status_on);
-                status_on_array[i].setTextColor(Color.WHITE);
-                status_on_array[i].setPadding(5, 5, 5, 5);
-                status_on_head[i].addView(status_on_array[i]);
+                textArray[i] = new TextView(context);
+                textArray[i].setText(status_on);
+                textArray[i].setTextColor(Color.WHITE);
 
-                work_on_time_head[i] = new TableRow(context);
-                work_on_time_head[i].setBackgroundColor(Color.GRAY);        // part1
-                work_on_time_head[i].setLayoutParams(new TableLayout.LayoutParams(
-                        TableLayout.LayoutParams.MATCH_PARENT,
-                        TableLayout.LayoutParams.WRAP_CONTENT));
                 work_on_time_array[i] = new TextView(context);
+                work_on_time_array[i].getAutoSizeTextType();
                 work_on_time_array[i].setText(work_on_time);
                 work_on_time_array[i].setTextColor(Color.WHITE);
-                work_on_time_array[i].setPadding(5, 5, 5, 5);
-                work_on_time_head[i].addView(work_on_time_array[i]);
-                data.addView(status_on_head[i], new TableLayout.LayoutParams(
-                        TableLayout.LayoutParams.MATCH_PARENT,
-                        TableLayout.LayoutParams.WRAP_CONTENT));
-                data.addView(work_on_time_head[i], new TableLayout.LayoutParams(
+                tr_head[i].addView(textArray[i]);
+                tr_head[i].addView(work_on_time_array[i]);
+                data.addView(tr_head[i], new TableLayout.LayoutParams(
                         TableLayout.LayoutParams.MATCH_PARENT,
                         TableLayout.LayoutParams.WRAP_CONTENT));
                 Toast.makeText(context,now_month_data.getJSONObject(i).getString("work_time"),Toast.LENGTH_SHORT).show();

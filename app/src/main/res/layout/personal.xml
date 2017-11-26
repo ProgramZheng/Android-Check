@@ -82,6 +82,29 @@
         android:id="@+id/data"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+            <TableRow>
+                <TextView
+                    android:textColor="@android:color/black"
+                    android:layout_margin="1dp"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:background="#ffcccccc"
+                    android:text="Col1" />
+                <TextView
+                    android:textColor="@android:color/black"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:layout_margin="1dp"
+                    android:background="@android:color/white"
+                    android:text="Col2" />
+                <TextView
+                    android:textColor="@android:color/black"
+                    android:gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:layout_margin="1dp"
+                    android:background="@android:color/white"
+                    android:text="Col3" />
+        </TableRow>
     </TableLayout>
 
 </LinearLayout>
