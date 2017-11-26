@@ -1,13 +1,17 @@
 package com.example.user.myapplication;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.support.design.widget.TabLayout;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -16,6 +20,7 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -84,7 +89,8 @@ public class member extends AsyncTask<String, Void, String> {
             String name = member.getString("name");
             JSONArray now_month_data = new JSONArray(jsonObject.getString("now_month_data"));
             TableRow tr_head[] = new TableRow[now_month_data.length()];
-            TextView[] textArray = new TextView[now_month_data.length()];
+            TextView[] status_on_array = new TextView[now_month_data.length()];
+            TextView[] status_off_array = new TextView[now_month_data.length()];
             TextView[] work_on_time_array = new TextView[now_month_data.length()];
             HashMap<String, String> map = new HashMap<String,String>();
             for (int i=0;i<now_month_data.length();i++) {
@@ -95,27 +101,39 @@ public class member extends AsyncTask<String, Void, String> {
                 String work_time = now_month_data.getJSONObject(i).getString("work_time");
                 tr_head[i] = new TableRow(context);
                 tr_head[i].setBackgroundColor(Color.GRAY);        // part1
-                tr_head[i].setLayoutParams(new TableLayout.LayoutParams(
-                        TableLayout.LayoutParams.MATCH_PARENT,
-                        TableLayout.LayoutParams.WRAP_CONTENT));
-                textArray[i] = new TextView(context);
-                textArray[i].setText(status_on);
-                textArray[i].setTextColor(Color.WHITE);
+                TableRow.LayoutParams layoutRow = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT);
+                tr_head[i].setLayoutParams(layoutRow);
 
+                TableRow.LayoutParams layoutTextView = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                /*上班打卡方式*/
+                status_on_array[i] = new TextView(context);
+                status_on_array[i].setLayoutParams(layoutTextView);
+                status_on_array[i].setTextColor(Color.WHITE);
+                status_on_array[i].setText(status_on);
+                status_on_array[i].setGravity(Gravity.CENTER_VERTICAL);
+
+                /*下班打卡方式*/
+                status_off_array[i] = new TextView(context);
+                status_off_array[i].setLayoutParams(layoutTextView);
+                status_off_array[i].setTextColor(Color.WHITE);
+                status_off_array[i].setText(status_off);
+                status_off_array[i].setGravity(Gravity.CENTER_VERTICAL);
+
+                /*上班打卡時間*/
                 work_on_time_array[i] = new TextView(context);
-                work_on_time_array[i].getAutoSizeTextType();
-                work_on_time_array[i].setText(work_on_time);
+                work_on_time_array[i].setLayoutParams(layoutTextView);
                 work_on_time_array[i].setTextColor(Color.WHITE);
-                tr_head[i].addView(textArray[i]);
+                work_on_time_array[i].setText(work_on_time);
+                work_on_time_array[i].setGravity(Gravity.CENTER_VERTICAL);
+
+                tr_head[i].addView(status_on_array[i]);
+                tr_head[i].addView(status_off_array[i]);
                 tr_head[i].addView(work_on_time_array[i]);
                 data.addView(tr_head[i], new TableLayout.LayoutParams(
                         TableLayout.LayoutParams.MATCH_PARENT,
                         TableLayout.LayoutParams.WRAP_CONTENT));
                 Toast.makeText(context,now_month_data.getJSONObject(i).getString("work_time"),Toast.LENGTH_SHORT).show();
             }
-
-
-            Toast.makeText(context,name,Toast.LENGTH_SHORT).show();
             this.name.setText(name);
         } catch (JSONException e) {
             e.printStackTrace();
