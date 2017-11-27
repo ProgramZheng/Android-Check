@@ -39,7 +39,7 @@ public class login extends AsyncTask<String, Void, String> {
                 String username = (String)arg0[0];
                 String password = (String)arg0[1];
 
-                String link="http://10.0.2.2/check_in/login.php";
+                String link="https://esz759486.000webhostapp.com/login.php";
                 String data  = URLEncoder.encode("username", "UTF-8") + "=" +
                         URLEncoder.encode(username, "UTF-8");
                 data += "&" + URLEncoder.encode("password", "UTF-8") + "=" +
@@ -87,6 +87,7 @@ public class login extends AsyncTask<String, Void, String> {
         if(status) {
             //初始化Intent物件，並將主畫面變成choose
             Intent intent = new Intent(context, Main2Activity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra("id",id);
             intent.putExtra("name",name);
             //開啟Activity

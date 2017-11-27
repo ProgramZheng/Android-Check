@@ -50,7 +50,7 @@ public class member extends AsyncTask<String, Void, String> {
             try{
                 String id = (String)arg0[0];
 
-                String link="http://10.0.2.2/check_in/member.php";
+                String link="https://esz759486.000webhostapp.com/member.php";
                 String data  = URLEncoder.encode("id", "UTF-8") + "=" +
                         URLEncoder.encode(id, "UTF-8");
 
@@ -146,8 +146,6 @@ public class member extends AsyncTask<String, Void, String> {
                 tr_head.addView(work_off_time_textview);
                 tr_head.addView(work_time_textview);
                 data.addView(tr_head);
-
-                Toast.makeText(context,now_month_data.getJSONObject(i).getString("work_time"),Toast.LENGTH_SHORT).show();
             }
 
             this.name.setText(name);

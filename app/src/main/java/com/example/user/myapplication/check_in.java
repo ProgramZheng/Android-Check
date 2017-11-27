@@ -35,7 +35,7 @@ public class check_in extends AsyncTask<String, Void, String> {
                 String member_id = (String)arg0[0];
                 String flag = (String)arg0[1];
 
-                String link="http://10.0.2.2/check_in/check_in.php";
+                String link="https://esz759486.000webhostapp.com/check_in.php";
                 String data  = URLEncoder.encode("member_id", "UTF-8") + "=" +
                         URLEncoder.encode(member_id, "UTF-8");
                 data += "&" + URLEncoder.encode("flag", "UTF-8") + "=" +

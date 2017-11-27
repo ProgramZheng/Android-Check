@@ -35,7 +35,7 @@ public class SigninActivity extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... arg0) {
             try{
 
-                String link="http://10.0.2.2/check_in/";
+                String link="https://esz759486.000webhostapp.com/";
 
                 URL url = new URL(link);
                 URLConnection conn = url.openConnection();
