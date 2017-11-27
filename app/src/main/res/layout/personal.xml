@@ -80,32 +80,34 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
 
         android:id="@+id/data"
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-            <TableRow
-                android:gravity="center"
-                >
+        android:layout_height="wrap_content">
+            <TableRow>
                 <TextView
-                    android:textColor="@android:color/black"
-                    android:layout_margin="1dp"
-                    android:gravity="center_horizontal"
-                    android:layout_weight="1"
-                    android:background="#ffcccccc"
-                    android:text="Col1" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="上班打卡時間"
+                    android:textColor="@android:color/white"
+                    android:background="#0abab5"
+                    android:textSize="22sp" />
                 <TextView
-                    android:textColor="@android:color/black"
-                    android:gravity="center_horizontal"
-                    android:layout_weight="1"
-                    android:layout_margin="1dp"
-                    android:background="@android:color/white"
-                    android:text="Col2" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="下班打卡時間"
+                    android:textColor="@android:color/white"
+                    android:background="#0abab5"
+                    android:textSize="22sp" />
                 <TextView
-                    android:textColor="@android:color/black"
-                    android:gravity="center_horizontal"
-                    android:layout_weight="1"
-                    android:layout_margin="1dp"
-                    android:background="@android:color/white"
-                    android:text="Col3" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="當日工作時數"
+                    android:textColor="@android:color/white"
+                    android:background="#0abab5"
+                    android:textSize="22sp" />
             </TableRow>
     </TableLayout>
 

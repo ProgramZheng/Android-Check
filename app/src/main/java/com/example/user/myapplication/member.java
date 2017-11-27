@@ -88,52 +88,68 @@ public class member extends AsyncTask<String, Void, String> {
             JSONObject member = new JSONObject(jsonObject.getString("member"));
             String name = member.getString("name");
             JSONArray now_month_data = new JSONArray(jsonObject.getString("now_month_data"));
-            TableRow tr_head[] = new TableRow[now_month_data.length()];
-            TextView[] status_on_array = new TextView[now_month_data.length()];
-            TextView[] status_off_array = new TextView[now_month_data.length()];
-            TextView[] work_on_time_array = new TextView[now_month_data.length()];
-            HashMap<String, String> map = new HashMap<String,String>();
+
             for (int i=0;i<now_month_data.length();i++) {
                 String status_on = now_month_data.getJSONObject(i).getString("status_on");
                 String status_off = now_month_data.getJSONObject(i).getString("status_off");
                 String work_on_time = now_month_data.getJSONObject(i).getString("work_on_time");
                 String work_off_time = now_month_data.getJSONObject(i).getString("work_off_time");
                 String work_time = now_month_data.getJSONObject(i).getString("work_time");
-                tr_head[i] = new TableRow(context);
-                tr_head[i].setBackgroundColor(Color.GRAY);        // part1
-                TableRow.LayoutParams layoutRow = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT);
-                tr_head[i].setLayoutParams(layoutRow);
-
-                TableRow.LayoutParams layoutTextView = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-                /*上班打卡方式*/
-                status_on_array[i] = new TextView(context);
-                status_on_array[i].setLayoutParams(layoutTextView);
-                status_on_array[i].setTextColor(Color.WHITE);
-                status_on_array[i].setText(status_on);
-                status_on_array[i].setGravity(Gravity.CENTER_VERTICAL);
-
-                /*下班打卡方式*/
-                status_off_array[i] = new TextView(context);
-                status_off_array[i].setLayoutParams(layoutTextView);
-                status_off_array[i].setTextColor(Color.WHITE);
-                status_off_array[i].setText(status_off);
-                status_off_array[i].setGravity(Gravity.CENTER_VERTICAL);
-
+                TableRow tr_head = new TableRow(context);
+                tr_head.setLayoutParams(new TableRow.LayoutParams(
+                        TableRow.LayoutParams.WRAP_CONTENT,
+                        TableRow.LayoutParams.WRAP_CONTENT
+                ));
+//                /*上班打卡狀態*/
+//                TextView status_on_textview = new TextView(context);
+//                status_on_textview.setText(status_on);
+//                status_on_textview.setGravity(Gravity.CENTER);
+//                status_on_textview.setLayoutParams(new TableRow.LayoutParams(
+//                        TableRow.LayoutParams.WRAP_CONTENT,
+//                        TableRow.LayoutParams.WRAP_CONTENT
+//                ));
+//                /*下班打卡狀態*/
+//                TextView status_off_textview = new TextView(context);
+//                status_off_textview.setText(status_off);
+//                status_off_textview.setGravity(Gravity.CENTER);
+//                status_off_textview.setLayoutParams(new TableRow.LayoutParams(
+//                        TableRow.LayoutParams.WRAP_CONTENT,
+//                        TableRow.LayoutParams.WRAP_CONTENT
+//                ));
                 /*上班打卡時間*/
-                work_on_time_array[i] = new TextView(context);
-                work_on_time_array[i].setLayoutParams(layoutTextView);
-                work_on_time_array[i].setTextColor(Color.WHITE);
-                work_on_time_array[i].setText(work_on_time);
-                work_on_time_array[i].setGravity(Gravity.CENTER_VERTICAL);
+                TextView work_on_time_textview = new TextView(context);
+                work_on_time_textview.setText(work_on_time);
+                work_on_time_textview.setGravity(Gravity.CENTER);
+                work_on_time_textview.setLayoutParams(new TableRow.LayoutParams(
+                        TableRow.LayoutParams.WRAP_CONTENT,
+                        TableRow.LayoutParams.WRAP_CONTENT
+                ));
+                /*下班打卡時間*/
+                TextView work_off_time_textview = new TextView(context);
+                work_off_time_textview.setText(work_off_time);
+                work_off_time_textview.setGravity(Gravity.CENTER);
+                work_off_time_textview.setLayoutParams(new TableRow.LayoutParams(
+                        TableRow.LayoutParams.WRAP_CONTENT,
+                        TableRow.LayoutParams.WRAP_CONTENT
+                ));
+                /*當日工作時數*/
+                TextView work_time_textview = new TextView(context);
+                work_time_textview.setText(work_time);
+                work_time_textview.setGravity(Gravity.CENTER);
+                work_time_textview.setLayoutParams(new TableRow.LayoutParams(
+                        TableRow.LayoutParams.WRAP_CONTENT,
+                        TableRow.LayoutParams.WRAP_CONTENT
+                ));
+//                tr_head.addView(status_on_textview);
+//                tr_head.addView(status_off_textview);
+                tr_head.addView(work_on_time_textview);
+                tr_head.addView(work_off_time_textview);
+                tr_head.addView(work_time_textview);
+                data.addView(tr_head);
 
-                tr_head[i].addView(status_on_array[i]);
-                tr_head[i].addView(status_off_array[i]);
-                tr_head[i].addView(work_on_time_array[i]);
-                data.addView(tr_head[i], new TableLayout.LayoutParams(
-                        TableLayout.LayoutParams.MATCH_PARENT,
-                        TableLayout.LayoutParams.WRAP_CONTENT));
                 Toast.makeText(context,now_month_data.getJSONObject(i).getString("work_time"),Toast.LENGTH_SHORT).show();
             }
+
             this.name.setText(name);
         } catch (JSONException e) {
             e.printStackTrace();
