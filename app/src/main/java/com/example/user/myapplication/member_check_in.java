@@ -1,26 +1,15 @@
 package com.example.user.myapplication;
 
-import android.app.ActionBar;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.AsyncTask;
-import android.support.design.widget.TabLayout;
 import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.FrameLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -28,18 +17,13 @@ import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.HashMap;
 
-public class member extends AsyncTask<String, Void, String> {
+public class member_check_in extends AsyncTask<String, Void, String> {
     private Context context;
-    private TextView name;
     private TableLayout data;
 
-    //flag 0 means get and 1 means post.(By default it is get.)
-    public member(Context context,TextView name,TableLayout data) {
-        this.context = context;
-        this.name = name;
+    public member_check_in(Context context,TableLayout data){
+        this.context= context;
         this.data = data;
     }
     protected void onPreExecute(){
@@ -153,7 +137,6 @@ public class member extends AsyncTask<String, Void, String> {
                 data.addView(tr_head);
             }
 
-            this.name.setText(name);
         } catch (JSONException e) {
             e.printStackTrace();
         }
