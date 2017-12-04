@@ -19,7 +19,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,8 +43,6 @@ public class clock_on extends Fragment implements LocationListener, OnMapReadyCa
 
 
     private GoogleMap map;
-    Context member_context;
-    TableLayout data;
     String member_id,out_flag;
     LatLng currPoint;
     TextView txv;
@@ -65,8 +62,6 @@ public class clock_on extends Fragment implements LocationListener, OnMapReadyCa
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.clock_on, container, false);
         member_id = this.getArguments().getString("id");
-        member_context = getActivity().getBaseContext();
-        data = (TableLayout) getActivity().findViewById(R.id.data);
         /*GPS服務*/
         mgr = (LocationManager)getActivity().getSystemService(LOCATION_SERVICE);
         txv = (TextView) view.findViewById(R.id.txv);
@@ -207,14 +202,13 @@ public class clock_on extends Fragment implements LocationListener, OnMapReadyCa
                     //                if(flag>0) {
                     out_flag = String.valueOf(flag);
                     new check_in(getActivity(), btn).execute(member_id, out_flag);
-                    new member_check_in(member_context,data).execute(member_id);
                     //                }
                 }
-                }
+            }
         });
         mylocation.setOnClickListener(new View.OnClickListener(){
             @Override
-                public void onClick(View v){
+            public void onClick(View v){
                 map.animateCamera(CameraUpdateFactory.newLatLng(currPoint));
             }
         });

@@ -126,12 +126,7 @@ public class member extends AsyncTask<String, Void, String> {
                 ));
                 /*下班打卡時間*/
                 TextView work_off_time_textview = new TextView(context);
-                if(work_off_time=="1900-00-00") {
-                    work_off_time_textview.setText("未打下班卡");
-                }
-                else {
-                    work_off_time_textview.setText(work_off_time);
-                }
+                work_off_time_textview.setText(work_off_time);
                 work_off_time_textview.setGravity(Gravity.CENTER);
                 work_off_time_textview.setLayoutParams(new TableRow.LayoutParams(
                         TableRow.LayoutParams.WRAP_CONTENT,

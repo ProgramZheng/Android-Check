@@ -31,41 +31,41 @@ public class check_in extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... arg0) {
-            try{
-                String member_id = (String)arg0[0];
-                String flag = (String)arg0[1];
+        try{
+            String member_id = (String)arg0[0];
+            String flag = (String)arg0[1];
 
-                String link="https://esz759486.000webhostapp.com/check_in.php";
-                String data  = URLEncoder.encode("member_id", "UTF-8") + "=" +
-                        URLEncoder.encode(member_id, "UTF-8");
-                data += "&" + URLEncoder.encode("flag", "UTF-8") + "=" +
-                        URLEncoder.encode(flag, "UTF-8");
+            String link="https://esz759486.000webhostapp.com/check_in.php";
+            String data  = URLEncoder.encode("member_id", "UTF-8") + "=" +
+                    URLEncoder.encode(member_id, "UTF-8");
+            data += "&" + URLEncoder.encode("flag", "UTF-8") + "=" +
+                    URLEncoder.encode(flag, "UTF-8");
 
-                URL url = new URL(link);
-                URLConnection conn = url.openConnection();
+            URL url = new URL(link);
+            URLConnection conn = url.openConnection();
 
-                conn.setDoOutput(true);
-                OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+            conn.setDoOutput(true);
+            OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
 
-                wr.write( data );
-                wr.flush();
+            wr.write( data );
+            wr.flush();
 
-                BufferedReader reader = new BufferedReader(new
-                        InputStreamReader(conn.getInputStream()));
+            BufferedReader reader = new BufferedReader(new
+                    InputStreamReader(conn.getInputStream()));
 
-                StringBuilder sb = new StringBuilder();
-                String line = null;
+            StringBuilder sb = new StringBuilder();
+            String line = null;
 
-                // Read Server Response
-                while((line = reader.readLine()) != null) {
-                    sb.append(line);
-                    break;
-                }
-
-                return sb.toString();
-            } catch(Exception e){
-                return new String("Exception: " + e.getMessage());
+            // Read Server Response
+            while((line = reader.readLine()) != null) {
+                sb.append(line);
+                break;
             }
+
+            return sb.toString();
+        } catch(Exception e){
+            return new String("Exception: " + e.getMessage());
+        }
     }
 
     @Override

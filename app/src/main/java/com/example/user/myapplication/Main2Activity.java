@@ -34,6 +34,7 @@ public class Main2Activity extends AppCompatActivity {
     public ViewPager mViewPager;
 
     public String id,intent_name;
+    public int intent_permissions;
     public Bundle bundle;
     public TableLayout data;
     @Override
@@ -42,6 +43,7 @@ public class Main2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
         Intent intent = this.getIntent();
         id = intent.getStringExtra("id");
+        intent_permissions = intent.getIntExtra("permissions",0);
         intent_name = intent.getStringExtra("name");
         bundle = new Bundle();
         bundle.putString("id",id);
@@ -122,7 +124,14 @@ public class Main2Activity extends AppCompatActivity {
         @Override
         public int getCount() {
             //顯示出3個分頁
-            return 3;
+            int count;
+            if(intent_permissions==0){
+                count=2;
+            }
+            else{
+                count=3;
+            }
+            return count;
         }
 
         @Override

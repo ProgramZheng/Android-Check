@@ -22,6 +22,7 @@ public class login extends AsyncTask<String, Void, String> {
     private Context context;
     private EditText eID,Password;
     String id,name;
+    int permissions;
     boolean status;
 
     //flag 0 means get and 1 means post.(By default it is get.)
@@ -78,6 +79,7 @@ public class login extends AsyncTask<String, Void, String> {
             JSONObject jsonObject = new JSONObject(result);
             JSONObject member = jsonObject.getJSONObject("member");
             id = member.getString("id");
+            permissions = Integer.parseInt(member.getString("permissions"));
             name = member.getString("name");
             status = jsonObject.getBoolean("status");
         } catch (JSONException e) {
@@ -89,6 +91,7 @@ public class login extends AsyncTask<String, Void, String> {
             Intent intent = new Intent(context, Main2Activity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra("id",id);
+            intent.putExtra("permissions",permissions);
             intent.putExtra("name",name);
             //開啟Activity
             context.startActivity(intent);
