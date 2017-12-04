@@ -21,7 +21,7 @@ import java.net.URLEncoder;
 public class login extends AsyncTask<String, Void, String> {
     private Context context;
     private EditText eID,Password;
-    String id,name;
+    String id,name,department;
     int permissions;
     boolean status;
 

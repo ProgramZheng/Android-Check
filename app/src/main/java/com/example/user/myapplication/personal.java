@@ -10,16 +10,17 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 
 public class personal extends Fragment {
-    private TextView name;
+    private TextView department,name;
     private TableLayout data;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.personal, container, false);
         String get_id = this.getArguments().getString("id");
+        department = (TextView) rootView.findViewById(R.id.department);
         name = (TextView) rootView.findViewById(R.id.name);
         data = (TableLayout) rootView.findViewById(R.id.data);
-        new member(getActivity(),name,data).execute(get_id);
+        new member(getActivity(),department,name,data).execute(get_id);
         return rootView;
     }
 }

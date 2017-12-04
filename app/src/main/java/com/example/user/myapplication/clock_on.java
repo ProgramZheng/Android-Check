@@ -202,6 +202,7 @@ public class clock_on extends Fragment implements LocationListener, OnMapReadyCa
                     //                if(flag>0) {
                     out_flag = String.valueOf(flag);
                     new check_in(getActivity(), btn).execute(member_id, out_flag);
+//                    new member().execute(member_id);
                     //                }
                 }
             }

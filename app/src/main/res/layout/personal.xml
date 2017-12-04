@@ -30,18 +30,18 @@
             android:id="@+id/pertextView1"
             android:layout_weight="0"
             android:layout_height="wrap_content"
-            android:text="班別："
+            android:text="部門："
             android:textColor="@android:color/black"
             android:textSize="24sp" />
 
         <TextView
-            android:text="TextView"
+            android:id="@+id/department"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/pertextView2"
             android:layout_weight="0"
-            android:textSize="24sp"
-            android:textColor="@android:color/black" />
+            android:text="TextView"
+            android:textColor="@android:color/black"
+            android:textSize="24sp" />
 
     </LinearLayout>
 
@@ -55,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:text="工號/姓名："
+            android:text="姓名："
             android:textColor="@android:color/black"
             android:textSize="24sp" />
 

@@ -33,15 +33,19 @@ import java.util.HashMap;
 
 public class member extends AsyncTask<String, Void, String> {
     private Context context;
-    private TextView name;
+    private TextView department,name;
     private TableLayout data;
 
     //flag 0 means get and 1 means post.(By default it is get.)
-    public member(Context context,TextView name,TableLayout data) {
+    public member(Context context,TextView department,TextView name,TableLayout data) {
         this.context = context;
+        this.department = department;
         this.name = name;
         this.data = data;
     }
+
+
+
     protected void onPreExecute(){
     }
 
@@ -86,6 +90,7 @@ public class member extends AsyncTask<String, Void, String> {
         try {
             JSONObject jsonObject = new JSONObject(result);
             JSONObject member = new JSONObject(jsonObject.getString("member"));
+            String department = member.getString("department");
             String name = member.getString("name");
             JSONArray now_month_data = new JSONArray(jsonObject.getString("now_month_data"));
 
@@ -147,7 +152,7 @@ public class member extends AsyncTask<String, Void, String> {
                 tr_head.addView(work_time_textview);
                 data.addView(tr_head);
             }
-
+            this.department.setText(department);
             this.name.setText(name);
         } catch (JSONException e) {
             e.printStackTrace();

@@ -33,9 +33,9 @@ public class Main2Activity extends AppCompatActivity {
      */
     public ViewPager mViewPager;
 
-    public String id,intent_name;
+    public String id,intent_name,intent_department;
     public int intent_permissions;
-    public Bundle bundle;
+    public Bundle personal_bundle,clock_on_bundle;
     public TableLayout data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +44,13 @@ public class Main2Activity extends AppCompatActivity {
         Intent intent = this.getIntent();
         id = intent.getStringExtra("id");
         intent_permissions = intent.getIntExtra("permissions",0);
-        intent_name = intent.getStringExtra("name");
-        bundle = new Bundle();
-        bundle.putString("id",id);
-        bundle.putString("name",intent_name);
+        /*new各分頁的bundle*/
+        personal_bundle = new Bundle();
+        clock_on_bundle = new Bundle();
+
+        personal_bundle.putString("id",id);
+
+        clock_on_bundle.putString("id",id);
         //取得toolbar的實體
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //使用setSupportActionBar設定將Toolbar取代原本的actionbar
@@ -55,7 +58,6 @@ public class Main2Activity extends AppCompatActivity {
         //創造回傳三個分頁的adapter
         //主要的activity
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
         //設定mViewPager的adapter
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
@@ -107,11 +109,11 @@ public class Main2Activity extends AppCompatActivity {
             switch (position) {
                 case 0:
                     personal tab1 = new personal();
-                    tab1.setArguments(bundle);
+                    tab1.setArguments(personal_bundle);
                     return tab1;
                 case 1:
                     clock_on tab2 = new clock_on();
-                    tab2.setArguments(bundle);
+                    tab2.setArguments(clock_on_bundle);
                     return tab2;
                 case 2:
                     manage tab3 = new manage();
