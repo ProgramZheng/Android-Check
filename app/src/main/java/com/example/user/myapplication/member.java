@@ -43,46 +43,43 @@ public class member extends AsyncTask<String, Void, String> {
         this.name = name;
         this.data = data;
     }
-
-
-
     protected void onPreExecute(){
     }
 
     @Override
     protected String doInBackground(String... arg0) {
-            try{
-                String id = (String)arg0[0];
+        try{
+            String id = (String)arg0[0];
 
-                String link="https://esz759486.000webhostapp.com/member.php";
-                String data  = URLEncoder.encode("id", "UTF-8") + "=" +
-                        URLEncoder.encode(id, "UTF-8");
+            String link="https://esz759486.000webhostapp.com/member.php";
+            String data  = URLEncoder.encode("id", "UTF-8") + "=" +
+                    URLEncoder.encode(id, "UTF-8");
 
-                URL url = new URL(link);
-                URLConnection conn = url.openConnection();
+            URL url = new URL(link);
+            URLConnection conn = url.openConnection();
 
-                conn.setDoOutput(true);
-                OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+            conn.setDoOutput(true);
+            OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
 
-                wr.write( data );
-                wr.flush();
+            wr.write( data );
+            wr.flush();
 
-                BufferedReader reader = new BufferedReader(new
-                        InputStreamReader(conn.getInputStream()));
+            BufferedReader reader = new BufferedReader(new
+                    InputStreamReader(conn.getInputStream()));
 
-                StringBuilder sb = new StringBuilder();
-                String line = null;
+            StringBuilder sb = new StringBuilder();
+            String line = null;
 
-                // Read Server Response
-                while((line = reader.readLine()) != null) {
-                    sb.append(line);
-                    break;
-                }
-
-                return sb.toString();
-            } catch(Exception e){
-                return new String("Exception: " + e.getMessage());
+            // Read Server Response
+            while((line = reader.readLine()) != null) {
+                sb.append(line);
+                break;
             }
+
+            return sb.toString();
+        } catch(Exception e){
+            return new String("Exception: " + e.getMessage());
+        }
     }
 
     @Override
@@ -103,7 +100,7 @@ public class member extends AsyncTask<String, Void, String> {
                 TableRow tr_head = new TableRow(context);
                 tr_head.setLayoutParams(new TableRow.LayoutParams(
                         TableRow.LayoutParams.WRAP_CONTENT,
-                        TableRow.LayoutParams.WRAP_CONTENT
+                        TableRow.LayoutParams.WRAP_CONTENT,1
                 ));
 //                /*上班打卡狀態*/
 //                TextView status_on_textview = new TextView(context);
@@ -127,7 +124,7 @@ public class member extends AsyncTask<String, Void, String> {
                 work_on_time_textview.setGravity(Gravity.CENTER);
                 work_on_time_textview.setLayoutParams(new TableRow.LayoutParams(
                         TableRow.LayoutParams.WRAP_CONTENT,
-                        TableRow.LayoutParams.WRAP_CONTENT
+                        TableRow.LayoutParams.WRAP_CONTENT,1
                 ));
                 /*下班打卡時間*/
                 TextView work_off_time_textview = new TextView(context);
@@ -135,7 +132,7 @@ public class member extends AsyncTask<String, Void, String> {
                 work_off_time_textview.setGravity(Gravity.CENTER);
                 work_off_time_textview.setLayoutParams(new TableRow.LayoutParams(
                         TableRow.LayoutParams.WRAP_CONTENT,
-                        TableRow.LayoutParams.WRAP_CONTENT
+                        TableRow.LayoutParams.WRAP_CONTENT,1
                 ));
                 /*當日工作時數*/
                 TextView work_time_textview = new TextView(context);
@@ -143,7 +140,7 @@ public class member extends AsyncTask<String, Void, String> {
                 work_time_textview.setGravity(Gravity.CENTER);
                 work_time_textview.setLayoutParams(new TableRow.LayoutParams(
                         TableRow.LayoutParams.WRAP_CONTENT,
-                        TableRow.LayoutParams.WRAP_CONTENT
+                        TableRow.LayoutParams.WRAP_CONTENT,1
                 ));
 //                tr_head.addView(status_on_textview);
 //                tr_head.addView(status_off_textview);
