@@ -33,9 +33,9 @@ public class Main2Activity extends AppCompatActivity {
      */
     public ViewPager mViewPager;
 
-    public String id,intent_name,intent_department;
+    public String id;
     public int intent_permissions;
-    public Bundle personal_bundle,clock_on_bundle;
+    public Bundle personal_bundle,clock_on_bundle,manage_bundle;
     public TableLayout data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +47,13 @@ public class Main2Activity extends AppCompatActivity {
         /*new各分頁的bundle*/
         personal_bundle = new Bundle();
         clock_on_bundle = new Bundle();
-
+        manage_bundle = new Bundle();
+        /*personal*/
         personal_bundle.putString("id",id);
-
+        /*clock_on*/
         clock_on_bundle.putString("id",id);
+        /*manage*/
+        manage_bundle.putString("id",id);
         //取得toolbar的實體
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //使用setSupportActionBar設定將Toolbar取代原本的actionbar
@@ -117,6 +120,7 @@ public class Main2Activity extends AppCompatActivity {
                     return tab2;
                 case 2:
                     manage tab3 = new manage();
+                    tab3.setArguments(manage_bundle);
                     return tab3;
                 default:
                     return null;
