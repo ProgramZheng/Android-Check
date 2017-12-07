@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TableLayout;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -25,11 +27,13 @@ import java.util.ArrayList;
 public class get_member extends AsyncTask<String, Void, String> {
     private Context context;
     Spinner personal_data;
+    LinearLayout member_data_layout;
     ArrayList<String> list,id_list;
     //flag 0 means get and 1 means post.(By default it is get.)
-    public get_member(Context context,Spinner personal_data) {
+    public get_member(Context context, Spinner personal_data, LinearLayout member_data_layout) {
         this.context = context;
         this.personal_data=personal_data;
+        this.member_data_layout=member_data_layout;
     }
     protected void onPreExecute(){
     }
@@ -92,7 +96,7 @@ public class get_member extends AsyncTask<String, Void, String> {
         personal_data.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                Toast.makeText(context,id_list.get(position),Toast.LENGTH_SHORT).show();
+                new get_member_data(context,member_data_layout).execute(id_list.get(position));
             }
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
