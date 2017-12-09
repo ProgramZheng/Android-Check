@@ -29,17 +29,16 @@ import java.util.ArrayList;
 public class get_member extends AsyncTask<String, Void, String> {
     private Context context;
     Spinner personal_data,spinner_month;
-    LinearLayout head_layout,member_data_layout;
+    TableLayout data;
     ArrayList<String> list,id_list;
     ArrayList<Integer> month_list;
     String now_name,now_month;
     //flag 0 means get and 1 means post.(By default it is get.)
-    public get_member(Context context, Spinner spinner_month,Spinner personal_data, LinearLayout head_layout,LinearLayout member_data_layout) {
+    public get_member(Context context, Spinner spinner_month,Spinner personal_data, TableLayout data) {
         this.context = context;
-        this.personal_data=personal_data;
-        this.spinner_month=spinner_month;
-        this.head_layout=head_layout;
-        this.member_data_layout=member_data_layout;
+        this.personal_data = personal_data;
+        this.spinner_month = spinner_month;
+        this.data = data;
     }
     protected void onPreExecute(){
     }
@@ -84,37 +83,6 @@ public class get_member extends AsyncTask<String, Void, String> {
         list = new ArrayList<String>();
         id_list = new ArrayList<String>();
         month_list = new ArrayList<Integer>();
-        head_layout.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT, 1
-        ));
-        /*標題*/
-        TextView head_work_on_time_textview = new TextView(context);
-        head_work_on_time_textview.setText("本月上班時間");
-        head_work_on_time_textview.setGravity(Gravity.CENTER);
-        head_work_on_time_textview.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT, 1
-        ));
-
-        TextView head_work_off_time_textview = new TextView(context);
-        head_work_off_time_textview.setText("本月下班時間");
-        head_work_off_time_textview.setGravity(Gravity.CENTER);
-        head_work_off_time_textview.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT, 1
-        ));
-
-        TextView head_work_time_textview = new TextView(context);
-        head_work_time_textview.setText("時數");
-        head_work_time_textview.setGravity(Gravity.CENTER);
-        head_work_time_textview.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT, 2
-        ));
-        head_layout.addView(head_work_on_time_textview);
-        head_layout.addView(head_work_off_time_textview);
-        head_layout.addView(head_work_time_textview);
         try {
             JSONObject jsonObject = new JSONObject(result);
             JSONArray member = new JSONArray(jsonObject.getString("member"));
@@ -142,7 +110,7 @@ public class get_member extends AsyncTask<String, Void, String> {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 now_name=id_list.get(position);
-                new get_member_data(context,head_layout,member_data_layout).execute(now_name,spinner_month.getSelectedItem().toString());
+                new get_member_data(context,data).execute(now_name,spinner_month.getSelectedItem().toString());
             }
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
@@ -153,7 +121,7 @@ public class get_member extends AsyncTask<String, Void, String> {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 now_month=month_list.get(position).toString();
-                new get_member_data(context,head_layout,member_data_layout).execute(now_name,now_month);
+                new get_member_data(context,data).execute(now_name,now_month);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
