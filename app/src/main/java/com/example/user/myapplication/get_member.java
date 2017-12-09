@@ -3,6 +3,7 @@ package com.example.user.myapplication;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TableLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -82,6 +84,37 @@ public class get_member extends AsyncTask<String, Void, String> {
         list = new ArrayList<String>();
         id_list = new ArrayList<String>();
         month_list = new ArrayList<Integer>();
+        head_layout.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT, 1
+        ));
+        /*標題*/
+        TextView head_work_on_time_textview = new TextView(context);
+        head_work_on_time_textview.setText("本月上班時間");
+        head_work_on_time_textview.setGravity(Gravity.CENTER);
+        head_work_on_time_textview.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT, 1
+        ));
+
+        TextView head_work_off_time_textview = new TextView(context);
+        head_work_off_time_textview.setText("本月下班時間");
+        head_work_off_time_textview.setGravity(Gravity.CENTER);
+        head_work_off_time_textview.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT, 1
+        ));
+
+        TextView head_work_time_textview = new TextView(context);
+        head_work_time_textview.setText("時數");
+        head_work_time_textview.setGravity(Gravity.CENTER);
+        head_work_time_textview.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT, 2
+        ));
+        head_layout.addView(head_work_on_time_textview);
+        head_layout.addView(head_work_off_time_textview);
+        head_layout.addView(head_work_time_textview);
         try {
             JSONObject jsonObject = new JSONObject(result);
             JSONArray member = new JSONArray(jsonObject.getString("member"));

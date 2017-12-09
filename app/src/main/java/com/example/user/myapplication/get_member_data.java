@@ -79,9 +79,6 @@ public class get_member_data extends AsyncTask<String, Void, String> {
         try {
             JSONObject jsonObject = new JSONObject(result);
             JSONArray now_month_data = new JSONArray(jsonObject.getString("now_month_data"));
-
-
-
 //            Toast.makeText(context,jsonObject.getString("now_month_data").length(),Toast.LENGTH_SHORT).show();
             if(now_month_data.length()>0) {
                 member_data_layout.removeAllViews();
