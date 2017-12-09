@@ -26,11 +26,12 @@ import java.util.ArrayList;
 
 public class get_member_data extends AsyncTask<String, Void, String> {
     private Context context;
-    LinearLayout member_data_layout;
+    LinearLayout head_layout,member_data_layout;
     //select_month 0 means get and 1 means post.(By default it is get.)
-    public get_member_data(Context context, LinearLayout member_data_layout) {
+    public get_member_data(Context context, LinearLayout head_layout,LinearLayout member_data_layout) {
         this.context = context;
         this.member_data_layout=member_data_layout;
+        this.head_layout=head_layout;
     }
     protected void onPreExecute(){
     }
@@ -90,10 +91,6 @@ public class get_member_data extends AsyncTask<String, Void, String> {
                     String work_on_time = now_month_data.getJSONObject(i).getString("work_on_time");
                     String work_off_time = now_month_data.getJSONObject(i).getString("work_off_time");
                     String work_time = now_month_data.getJSONObject(i).getString("work_time");
-                    member_data_layout.setLayoutParams(new LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.WRAP_CONTENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT, 1
-                    ));
                     LinearLayout data_layout = new LinearLayout(context);
                     data_layout.setLayoutParams(new LinearLayout.LayoutParams(
                             LinearLayout.LayoutParams.MATCH_PARENT,
@@ -137,7 +134,7 @@ public class get_member_data extends AsyncTask<String, Void, String> {
                     work_time_textview.setGravity(Gravity.CENTER);
                     work_time_textview.setLayoutParams(new LinearLayout.LayoutParams(
                             LinearLayout.LayoutParams.WRAP_CONTENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT, 1
+                            LinearLayout.LayoutParams.WRAP_CONTENT, 2
                     ));
                     data_layout.addView(work_on_time_textview);
                     data_layout.addView(work_off_time_textview);

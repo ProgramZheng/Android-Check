@@ -27,15 +27,16 @@ import java.util.ArrayList;
 public class get_member extends AsyncTask<String, Void, String> {
     private Context context;
     Spinner personal_data,spinner_month;
-    LinearLayout member_data_layout;
+    LinearLayout head_layout,member_data_layout;
     ArrayList<String> list,id_list;
     ArrayList<Integer> month_list;
     String now_name,now_month;
     //flag 0 means get and 1 means post.(By default it is get.)
-    public get_member(Context context, Spinner spinner_month,Spinner personal_data, LinearLayout member_data_layout) {
+    public get_member(Context context, Spinner spinner_month,Spinner personal_data, LinearLayout head_layout,LinearLayout member_data_layout) {
         this.context = context;
         this.personal_data=personal_data;
         this.spinner_month=spinner_month;
+        this.head_layout=head_layout;
         this.member_data_layout=member_data_layout;
     }
     protected void onPreExecute(){
@@ -108,7 +109,7 @@ public class get_member extends AsyncTask<String, Void, String> {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 now_name=id_list.get(position);
-                new get_member_data(context,member_data_layout).execute(now_name,spinner_month.getSelectedItem().toString());
+                new get_member_data(context,head_layout,member_data_layout).execute(now_name,spinner_month.getSelectedItem().toString());
             }
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
@@ -119,7 +120,7 @@ public class get_member extends AsyncTask<String, Void, String> {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 now_month=month_list.get(position).toString();
-                new get_member_data(context,member_data_layout).execute(now_name,now_month);
+                new get_member_data(context,head_layout,member_data_layout).execute(now_name,now_month);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
