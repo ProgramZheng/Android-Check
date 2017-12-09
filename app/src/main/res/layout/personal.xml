@@ -26,11 +26,11 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:layout_width="wrap_content"
             android:id="@+id/pertextView1"
-            android:layout_weight="0"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="班別："
+            android:layout_weight="0"
+            android:text="部門："
             android:textColor="@android:color/black"
             android:textSize="24sp" />
 
@@ -55,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:text="工號/姓名："
+            android:text="姓名："
             android:textColor="@android:color/black"
             android:textSize="24sp" />
 
@@ -84,39 +84,47 @@
 
     </LinearLayout>
 
-    <TableLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-
-        android:id="@+id/data"
-        android:layout_weight="1"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TableRow android:background="#0abab5">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="上班時間"
-                android:textColor="@android:color/white"
-                android:background="#0abab5"
-                android:textSize="22sp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="下班時間"
-                android:textColor="@android:color/white"
-                android:background="#0abab5"
-                android:textSize="22sp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="當日工作時數"
-                android:textColor="@android:color/white"
-                android:background="#0abab5"
-                android:textSize="22sp" />
-        </TableRow>
-    </TableLayout>
+
+        <TableLayout
+
+            android:id="@+id/data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*">
+
+            <TableRow android:background="#0abab5">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="#0abab5"
+                    android:text="上班打卡時間"
+                    android:textColor="@android:color/white"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="#0abab5"
+                    android:text="下班打卡時間"
+                    android:textColor="@android:color/white"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="#0abab5"
+                    android:text="時數"
+                    android:textColor="@android:color/white"
+                    android:textSize="22sp" />
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
 
 </LinearLayout>

@@ -87,7 +87,8 @@ public class member extends AsyncTask<String, Void, String> {
         try {
             JSONObject jsonObject = new JSONObject(result);
             JSONObject member = new JSONObject(jsonObject.getString("member"));
-            String department = member.getString("department");
+            JSONObject department = new JSONObject(jsonObject.getString("department"));
+            String department_name = department.getString("name");
             String name = member.getString("name");
             JSONArray now_month_data = new JSONArray(jsonObject.getString("now_month_data"));
 
@@ -149,7 +150,7 @@ public class member extends AsyncTask<String, Void, String> {
                 tr_head.addView(work_time_textview);
                 data.addView(tr_head);
             }
-            this.department.setText(department);
+            this.department.setText(department_name);
             this.name.setText(name);
         } catch (JSONException e) {
             e.printStackTrace();
