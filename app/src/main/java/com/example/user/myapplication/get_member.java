@@ -26,13 +26,16 @@ import java.util.ArrayList;
 
 public class get_member extends AsyncTask<String, Void, String> {
     private Context context;
-    Spinner personal_data;
+    Spinner personal_data,spinner_month;
     LinearLayout member_data_layout;
     ArrayList<String> list,id_list;
+    ArrayList<Integer> month_list;
+    String now_name,now_month;
     //flag 0 means get and 1 means post.(By default it is get.)
-    public get_member(Context context, Spinner personal_data, LinearLayout member_data_layout) {
+    public get_member(Context context, Spinner spinner_month,Spinner personal_data, LinearLayout member_data_layout) {
         this.context = context;
         this.personal_data=personal_data;
+        this.spinner_month=spinner_month;
         this.member_data_layout=member_data_layout;
     }
     protected void onPreExecute(){
@@ -77,6 +80,7 @@ public class get_member extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result){
         list = new ArrayList<String>();
         id_list = new ArrayList<String>();
+        month_list = new ArrayList<Integer>();
         try {
             JSONObject jsonObject = new JSONObject(result);
             JSONArray member = new JSONArray(jsonObject.getString("member"));
@@ -93,15 +97,35 @@ public class get_member extends AsyncTask<String, Void, String> {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        ArrayAdapter<Integer> month_adapter;
+        for(int i=1;i<=12;i++){
+            month_list.add(i);
+            month_adapter = new ArrayAdapter<Integer>(context,
+                    android.R.layout.simple_list_item_1, month_list);
+            spinner_month.setAdapter(month_adapter);
+        }
         personal_data.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                new get_member_data(context,member_data_layout).execute(id_list.get(position));
+                now_name=id_list.get(position);
+                new get_member_data(context,member_data_layout).execute(now_name,spinner_month.getSelectedItem().toString());
             }
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 // your code here
             }
         });
+        spinner_month.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                now_month=month_list.get(position).toString();
+                new get_member_data(context,member_data_layout).execute(now_name,now_month);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+        });
+
     }
 }

@@ -10,7 +10,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 public class manage extends Fragment {
-    private Spinner personal_data;
+    private Spinner personal_data,spinner_month;
     private LinearLayout member_data_layout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -18,8 +18,9 @@ public class manage extends Fragment {
         View rootView = inflater.inflate(R.layout.manage, container, false);
         String get_id = this.getArguments().getString("id");
         personal_data = (Spinner) rootView.findViewById(R.id.personal_data);
+        spinner_month = (Spinner) rootView.findViewById(R.id.spinner_month);
         member_data_layout = (LinearLayout) rootView.findViewById(R.id.member_data_layout);
-        new get_member(getActivity(),personal_data,member_data_layout).execute(get_id);
+        new get_member(getActivity(),spinner_month,personal_data,member_data_layout).execute(get_id);
         return rootView;
     }
 }

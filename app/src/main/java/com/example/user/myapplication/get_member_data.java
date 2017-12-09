@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class get_member_data extends AsyncTask<String, Void, String> {
     private Context context;
     LinearLayout member_data_layout;
-    //flag 0 means get and 1 means post.(By default it is get.)
+    //select_month 0 means get and 1 means post.(By default it is get.)
     public get_member_data(Context context, LinearLayout member_data_layout) {
         this.context = context;
         this.member_data_layout=member_data_layout;
@@ -36,10 +36,13 @@ public class get_member_data extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... arg0) {
         try{
             String select_member_id = (String)arg0[0];
+            String select_month = (String)arg0[1];
 
             String link="https://esz759486.000webhostapp.com/manage_check_in.php";
             String data  = URLEncoder.encode("select_member_id", "UTF-8") + "=" +
                     URLEncoder.encode(select_member_id, "UTF-8");
+            data += "&" + URLEncoder.encode("select_month", "UTF-8") + "=" +
+                    URLEncoder.encode(select_month, "UTF-8");
             URL url = new URL(link);
             URLConnection conn = url.openConnection();
 
@@ -70,5 +73,12 @@ public class get_member_data extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result){
         Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
+        try {
+            JSONObject jsonObject = new JSONObject(result);
+            JSONObject member = new JSONObject(jsonObject.getString("member"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 }
