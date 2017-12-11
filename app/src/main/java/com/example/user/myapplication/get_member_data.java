@@ -1,6 +1,7 @@
 package com.example.user.myapplication;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.view.Gravity;
 import android.view.View;
@@ -82,7 +83,52 @@ public class get_member_data extends AsyncTask<String, Void, String> {
             JSONArray now_month_data = new JSONArray(jsonObject.getString("now_month_data"));
 //            Toast.makeText(context,jsonObject.getString("now_month_data").length(),Toast.LENGTH_SHORT).show();
             if(now_month_data.length()>0) {
+
+                //移除完在做新增打卡上班 打卡下班 時數
                 data.removeAllViews();
+                TableRow head = new TableRow(context);
+                head.setBackgroundColor(Color.parseColor("#0abab5"));
+                head.setLayoutParams(new TableRow.LayoutParams(
+                        TableRow.LayoutParams.WRAP_CONTENT,
+                        TableRow.LayoutParams.WRAP_CONTENT,1
+                ));
+                TextView work_on_time_head = new TextView(context);
+                work_on_time_head.setText("上班打卡時間");
+                work_on_time_head.setBackgroundColor(Color.parseColor("#0abab5"));
+                work_on_time_head.setTextColor(Color.WHITE);
+                work_on_time_head.setTextSize(22);
+                work_on_time_head.setGravity(Gravity.CENTER);
+                work_on_time_head.setLayoutParams(new TableRow.LayoutParams(
+                        TableRow.LayoutParams.WRAP_CONTENT,
+                        TableRow.LayoutParams.WRAP_CONTENT,1
+                ));
+
+                TextView work_off_time_head = new TextView(context);
+                work_off_time_head.setText("下班打卡時間");
+                work_off_time_head.setBackgroundColor(Color.parseColor("#0abab5"));
+                work_off_time_head.setTextColor(Color.WHITE);
+                work_off_time_head.setTextSize(22);
+                work_off_time_head.setGravity(Gravity.CENTER);
+                work_off_time_head.setLayoutParams(new TableRow.LayoutParams(
+                        TableRow.LayoutParams.WRAP_CONTENT,
+                        TableRow.LayoutParams.WRAP_CONTENT,1
+                ));
+
+                TextView work_time_head = new TextView(context);
+                work_time_head.setText("時數");
+                work_time_head.setBackgroundColor(Color.parseColor("#0abab5"));
+                work_time_head.setTextColor(Color.WHITE);
+                work_time_head.setTextSize(22);
+                work_time_head.setGravity(Gravity.CENTER);
+                work_time_head.setLayoutParams(new TableRow.LayoutParams(
+                        TableRow.LayoutParams.WRAP_CONTENT,
+                        TableRow.LayoutParams.WRAP_CONTENT,1
+                ));
+
+                head.addView(work_on_time_head);
+                head.addView(work_off_time_head);
+                head.addView(work_time_head);
+                data.addView(head);
                 for (int i = 0; i < now_month_data.length(); i++) {
                     String status_on = now_month_data.getJSONObject(i).getString("status_on");
                     String status_off = now_month_data.getJSONObject(i).getString("status_off");
