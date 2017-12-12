@@ -87,7 +87,7 @@ public class login extends AsyncTask<String, Void, String> {
         }
         //status==true代表有此帳號密碼
         if(status) {
-            //初始化Intent物件，並將主畫面變成choose
+            //初始化Intent物件，並將主畫面變成Main2Activity
             Intent intent = new Intent(context, Main2Activity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra("id",id);

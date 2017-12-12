@@ -7,4 +7,7 @@
     <string name="title_activity_main2">打卡資料</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_maps">Map</string>
+
+    <!--註冊畫面-->
+    <string name="email_warning"><font size="10">盡量使用Gmail等較收得到信的信箱</font></string>
 </resources>
