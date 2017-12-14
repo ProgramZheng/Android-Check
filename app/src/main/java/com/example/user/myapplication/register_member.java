@@ -28,6 +28,7 @@ public class register_member extends AsyncTask<String, Void, String> {
                 String id = (String)arg0[0];
                 String email = (String)arg0[1];
                 String name = (String)arg0[2];
+                String time_money = (String)arg0[3];
 
                 String link="https://esz759486.000webhostapp.com/register_member.php";
                 String data  = URLEncoder.encode("id", "UTF-8") + "=" +
@@ -36,6 +37,8 @@ public class register_member extends AsyncTask<String, Void, String> {
                         URLEncoder.encode(email, "UTF-8");
                 data += "&" + URLEncoder.encode("name", "UTF-8") + "=" +
                         URLEncoder.encode(name, "UTF-8");
+                data += "&" + URLEncoder.encode("time_money", "UTF-8") + "=" +
+                        URLEncoder.encode(time_money, "UTF-8");
 
                 URL url = new URL(link);
                 URLConnection conn = url.openConnection();

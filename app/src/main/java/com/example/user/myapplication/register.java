@@ -9,7 +9,7 @@ import android.widget.EditText;
 
 public class register extends AppCompatActivity {
     String id;
-    private EditText register_email,register_name;
+    private EditText register_email,register_name,edit_time_money;
     private Button submit_register,clean_register;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +20,7 @@ public class register extends AppCompatActivity {
         //取得eID和password的實體
         register_email = (EditText) findViewById(R.id.register_email);
         register_name = (EditText) findViewById(R.id.register_name);
+        edit_time_money = (EditText) findViewById(R.id.edit_time_money);
         submit_register = (Button) findViewById(R.id.submit_register);
         clean_register = (Button) findViewById(R.id.clean_register);
         //清除EditText
@@ -28,6 +29,7 @@ public class register extends AppCompatActivity {
             public void onClick(View v) {
                 register_email.setText("");
                 register_name.setText("");
+                edit_time_money.setText("");
             }
         });
         //實做OnClickListener界面
@@ -37,9 +39,11 @@ public class register extends AppCompatActivity {
             public void onClick(View view) {
                 String email = register_email.getText().toString();
                 String name = register_name.getText().toString();
-                new register_member(getApplicationContext()).execute(id,email,name);
+                String time_money = edit_time_money.getText().toString();
+                new register_member(getApplicationContext()).execute(id,email,name,time_money);
                 register_email.setText("");
                 register_name.setText("");
+                edit_time_money.setText("");
             }
         });
     }
