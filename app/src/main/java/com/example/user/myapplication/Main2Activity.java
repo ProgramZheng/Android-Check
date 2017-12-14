@@ -13,6 +13,7 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,7 +36,7 @@ public class Main2Activity extends AppCompatActivity {
 
     public String id;
     public int intent_permissions;
-    public Bundle personal_bundle,clock_on_bundle,manage_bundle;
+    public Bundle personal_bundle,clock_on_bundle,manage_bundle,menu_bundle;
     public TableLayout data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +49,16 @@ public class Main2Activity extends AppCompatActivity {
         personal_bundle = new Bundle();
         clock_on_bundle = new Bundle();
         manage_bundle = new Bundle();
+        /*menu的bundle*/
+        menu_bundle = new Bundle();
         /*personal*/
         personal_bundle.putString("id",id);
         /*clock_on*/
         clock_on_bundle.putString("id",id);
         /*manage*/
         manage_bundle.putString("id",id);
+        /*menu*/
+        menu_bundle.putInt("intent_permissions",intent_permissions);
         //取得toolbar的實體
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //使用setSupportActionBar設定將Toolbar取代原本的actionbar
@@ -72,6 +77,9 @@ public class Main2Activity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        if(intent_permissions>0) {
+            menu.add(0, 0, 0, "註冊員工");
+        }
         //將menu添加到操作欄
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
@@ -80,12 +88,16 @@ public class Main2Activity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // 處理點擊操作欄發生的事件
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
+        int select_id = item.getItemId();
+        if (select_id == 0) {
+                    //初始化Intent物件，並將主畫面變成register
+                    Intent intent = new Intent();
+                    intent.setClass(Main2Activity.this, register.class);
+                    intent.putExtra("id",id);
+                    //開啟Activity
+                   startActivity(intent);
         }
-        if (id == R.id.log_out){
+        if (select_id == R.id.log_out){
             //初始化Intent物件
             Intent intent = new Intent();
             //從Main2Activity 到MainActivity
