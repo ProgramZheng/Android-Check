@@ -43,7 +43,7 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".choose"
+        <activity android:name=".money"
                   android:screenOrientation="portrait"/>
 
         <activity android:name=".register"
