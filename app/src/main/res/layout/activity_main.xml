@@ -29,8 +29,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="請輸入工號"
-            android:inputType="text"
+            android:hint="請輸入帳號"
+            android:inputType="textVisiblePassword"
             android:singleLine="true" />
     </LinearLayout>
 
@@ -83,22 +83,6 @@
             android:layout_weight="0"
             android:textColor="@drawable/buttonclick" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp">
-
-        <Button
-            android:text="修改密碼"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/changepw"
-            android:background="@drawable/buttonclick"
-            android:layout_weight="1"
-            android:textColor="@drawable/buttonclick"/>
     </LinearLayout>
 
 </LinearLayout>

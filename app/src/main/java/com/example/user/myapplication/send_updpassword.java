@@ -2,11 +2,7 @@ package com.example.user.myapplication;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -15,19 +11,12 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
-public class get_money extends AsyncTask<String, Void, String> {
+public class send_updpassword extends AsyncTask<String, Void, String> {
     private Context context;
-    private TextView month_time,time_money,labor_money,health_money,tax,total;
 
     //flag 0 means get and 1 means post.(By default it is get.)
-    public get_money(Context context,TextView month_time,TextView time_money,TextView labor_money, TextView health_money, TextView tax,TextView total) {
+    public send_updpassword(Context context) {
         this.context = context;
-        this.month_time = month_time;
-        this.time_money = time_money;
-        this.labor_money = labor_money;
-        this.health_money = health_money;
-        this.tax = tax;
-        this.total = total;
     }
     protected void onPreExecute(){
     }
@@ -36,10 +25,19 @@ public class get_money extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... arg0) {
             try{
                 String id = (String)arg0[0];
+                String get_old_password = (String)arg0[1];
+                String get_new_password = (String)arg0[2];
+                String get_new_password_check = (String)arg0[3];
 
-                String link="https://esz759486.000webhostapp.com/money.php";
+                String link="https://esz759486.000webhostapp.com/updpassword.php";
                 String data  = URLEncoder.encode("id", "UTF-8") + "=" +
                         URLEncoder.encode(id, "UTF-8");
+                data += "&" + URLEncoder.encode("old_password", "UTF-8") + "=" +
+                        URLEncoder.encode(get_old_password, "UTF-8");
+                data += "&" + URLEncoder.encode("new_password", "UTF-8") + "=" +
+                        URLEncoder.encode(get_new_password, "UTF-8");
+                data += "&" + URLEncoder.encode("new_password_check", "UTF-8") + "=" +
+                        URLEncoder.encode(get_new_password_check, "UTF-8");
 
                 URL url = new URL(link);
                 URLConnection conn = url.openConnection();
@@ -70,16 +68,6 @@ public class get_money extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String result){
-        try {
-            JSONObject jsonObject = new JSONObject(result);
-            month_time.setText(jsonObject.getString("month_time"));
-            time_money.setText(jsonObject.getString("time_money"));
-            labor_money.setText(jsonObject.getString("labor_money"));
-            health_money.setText(jsonObject.getString("health_money"));
-            tax.setText(jsonObject.getString("tax"));
-            total.setText(jsonObject.getString("total"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
     }
 }

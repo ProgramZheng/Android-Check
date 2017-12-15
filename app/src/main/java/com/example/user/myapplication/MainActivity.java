@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,6 +37,19 @@ public class MainActivity extends AppCompatActivity {
         });
         Button submit = (Button) findViewById(R.id.submit);
 
+        /*鍵盤送出鍵的事件*/
+        Password.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
+                    String username = eID.getText().toString();
+                    String password = Password.getText().toString();
+                    new login(getApplicationContext(),eID,Password).execute(username,password);
+                    return false;
+                }
+                return false;
+            }
+        });
             //實做OnClickListener界面
             //Login
             submit.setOnClickListener(new View.OnClickListener() {

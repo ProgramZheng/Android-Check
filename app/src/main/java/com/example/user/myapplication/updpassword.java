@@ -10,62 +10,63 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class register extends AppCompatActivity {
+public class updpassword extends AppCompatActivity {
     String id;
     int intent_permissions;
-    private EditText register_email,register_name,edit_time_money;
-    private Button submit_register,clean_register;
+    private EditText old_password,new_password,new_password_check;
+    private Button submit_updpassword,clean_updpassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register);
+        setContentView(R.layout.updpassword);
         Intent intent = this.getIntent();
         id = intent.getStringExtra("id");
         intent_permissions = intent.getIntExtra("permissions",0);
         //取得eID和password的實體
-        register_email = (EditText) findViewById(R.id.register_email);
-        register_name = (EditText) findViewById(R.id.register_name);
-        edit_time_money = (EditText) findViewById(R.id.edit_time_money);
-        submit_register = (Button) findViewById(R.id.submit_register);
-        clean_register = (Button) findViewById(R.id.clean_register);
+        old_password = (EditText) findViewById(R.id.old_password);
+        new_password = (EditText) findViewById(R.id.new_password);
+        new_password_check = (EditText) findViewById(R.id.new_password_check);
+        submit_updpassword = (Button) findViewById(R.id.submit_updpassword);
+        clean_updpassword = (Button) findViewById(R.id.clean_updpassword);
         //清除EditText
-        clean_register.setOnClickListener(new View.OnClickListener() {
+        clean_updpassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                register_email.setText("");
-                register_name.setText("");
-                edit_time_money.setText("");
+                old_password.setText("");
+                new_password.setText("");
+                new_password_check.setText("");
             }
         });
         //實做OnClickListener界面
-        //註冊會員
+        //修改密碼
         /*鍵盤送出鍵的事件*/
-        edit_time_money.setOnKeyListener(new View.OnKeyListener() {
+        new_password_check.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
-                    String email = register_email.getText().toString();
-                    String name = register_name.getText().toString();
-                    String time_money = edit_time_money.getText().toString();
-                    new register_member(getApplicationContext()).execute(id,email,name,time_money);
-                    register_email.setText("");
-                    register_name.setText("");
-                    edit_time_money.setText("");
+                    String get_old_password = old_password.getText().toString();
+                    String get_new_password = new_password.getText().toString();
+                    String get_new_password_check = new_password_check.getText().toString();
+                    new send_updpassword(getApplicationContext()).execute(id,get_old_password,get_new_password,get_new_password_check);
+                    old_password.setText("");
+                    new_password.setText("");
+                    new_password_check.setText("");
                     return false;
                 }
                 return false;
             }
         });
-        submit_register.setOnClickListener(new View.OnClickListener() {
+
+        submit_updpassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = register_email.getText().toString();
-                String name = register_name.getText().toString();
-                String time_money = edit_time_money.getText().toString();
-                new register_member(getApplicationContext()).execute(id,email,name,time_money);
-                register_email.setText("");
-                register_name.setText("");
-                edit_time_money.setText("");
+                String get_old_password = old_password.getText().toString();
+                String get_new_password = new_password.getText().toString();
+                String get_new_password_check = new_password_check.getText().toString();
+                new send_updpassword(getApplicationContext()).execute(id,get_old_password,get_new_password,get_new_password_check);
+                old_password.setText("");
+                new_password.setText("");
+                new_password_check.setText("");
             }
         });
     }

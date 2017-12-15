@@ -36,7 +36,7 @@ public class Main2Activity extends AppCompatActivity {
 
     public String id;
     public int intent_permissions;
-    public Bundle personal_bundle,clock_on_bundle,manage_bundle,menu_bundle;
+    public Bundle personal_bundle,clock_on_bundle,manage_bundle;
     public TableLayout data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,16 +49,12 @@ public class Main2Activity extends AppCompatActivity {
         personal_bundle = new Bundle();
         clock_on_bundle = new Bundle();
         manage_bundle = new Bundle();
-        /*menu的bundle*/
-        menu_bundle = new Bundle();
         /*personal*/
         personal_bundle.putString("id",id);
         /*clock_on*/
         clock_on_bundle.putString("id",id);
         /*manage*/
         manage_bundle.putString("id",id);
-        /*menu*/
-        menu_bundle.putInt("intent_permissions",intent_permissions);
         //取得toolbar的實體
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //使用setSupportActionBar設定將Toolbar取代原本的actionbar
@@ -77,9 +73,11 @@ public class Main2Activity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        /*menu.add 參數1:群組id, 參數2:itemId, 參數3:item順序, 參數4:item名稱*/
         if(intent_permissions>0) {
             menu.add(0, 0, 0, "註冊員工");
         }
+        menu.add(0,1,1,"修改密碼");
         //將menu添加到操作欄
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
@@ -90,12 +88,22 @@ public class Main2Activity extends AppCompatActivity {
         // 處理點擊操作欄發生的事件
         int select_id = item.getItemId();
         if (select_id == 0) {
-                    //初始化Intent物件，並將主畫面變成register
-                    Intent intent = new Intent();
-                    intent.setClass(Main2Activity.this, register.class);
-                    intent.putExtra("id",id);
-                    //開啟Activity
-                   startActivity(intent);
+            //初始化Intent物件，並將主畫面變成register
+            Intent intent = new Intent();
+            intent.setClass(Main2Activity.this, register.class);
+            intent.putExtra("id",id);
+            intent.putExtra("permissions",intent_permissions);
+            //開啟Activity
+            startActivity(intent);
+        }
+        if (select_id == 1) {
+            //初始化Intent物件，並將主畫面變成register
+            Intent intent = new Intent();
+            intent.setClass(Main2Activity.this, updpassword.class);
+            intent.putExtra("id",id);
+            intent.putExtra("permissions",intent_permissions);
+            //開啟Activity
+            startActivity(intent);
         }
         if (select_id == R.id.log_out){
             //初始化Intent物件
