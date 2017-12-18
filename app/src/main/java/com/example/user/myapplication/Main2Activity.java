@@ -121,6 +121,7 @@ public class Main2Activity extends AppCompatActivity {
      * {@link FragmentPagerAdapter} 將回傳與之對應的畫面
      * 其中的sections/tabs/pages.
      */
+    /*FragmentStatePagerAdapter*/
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {

@@ -25,6 +25,16 @@
         <item name="colorAccent">#bbe572</item>
     </style>
 
+    <style name="AppTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">#000000</item>
+        <item name="tabIndicatorHeight">4dp</item>
+        <item name="tabPaddingStart">6dp</item>
+        <item name="tabPaddingEnd">6dp</item>
+        <item name="tabBackground">?attr/selectableItemBackground</item>
+        <item name="tabSelectedTextColor">#FFFFFF</item>
+    </style>
+
+
     <style name="AppTheme.PopupOverlay_Tiffany" parent="ThemeOverlay.AppCompat.Light" >
         <item name="colorPrimary">#0abab5</item>
         <item name="colorAccent">#bbe572</item>

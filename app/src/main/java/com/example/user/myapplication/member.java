@@ -36,7 +36,6 @@ public class member extends AsyncTask<String, Void, String> {
     private TextView department,name;
     private TableLayout data;
 
-    //flag 0 means get and 1 means post.(By default it is get.)
     public member(Context context,TextView department,TextView name,TableLayout data) {
         this.context = context;
         this.department = department;
@@ -93,6 +92,8 @@ public class member extends AsyncTask<String, Void, String> {
             JSONArray now_month_data = new JSONArray(jsonObject.getString("now_month_data"));
 
             for (int i=0;i<now_month_data.length();i++) {
+                /*work用來判斷是否只有打上班卡*/
+                int work = Integer.parseInt(now_month_data.getJSONObject(i).getString("work"));
                 String status_on = now_month_data.getJSONObject(i).getString("status_on");
                 String status_off = now_month_data.getJSONObject(i).getString("status_off");
                 String work_on_time = now_month_data.getJSONObject(i).getString("work_on_time");
@@ -129,7 +130,12 @@ public class member extends AsyncTask<String, Void, String> {
                 ));
                 /*下班打卡時間*/
                 TextView work_off_time_textview = new TextView(context);
-                work_off_time_textview.setText(work_off_time);
+                if(work==1) {
+                    work_off_time_textview.setText("未打下班卡");
+                }
+                else{
+                    work_off_time_textview.setText(work_off_time);
+                }
                 work_off_time_textview.setGravity(Gravity.CENTER);
                 work_off_time_textview.setLayoutParams(new TableRow.LayoutParams(
                         TableRow.LayoutParams.WRAP_CONTENT,

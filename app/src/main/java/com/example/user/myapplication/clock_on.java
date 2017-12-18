@@ -1,6 +1,7 @@
 package com.example.user.myapplication;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -19,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +52,9 @@ public class clock_on extends Fragment implements LocationListener, OnMapReadyCa
     ImageButton mylocation;
     int flag=0;
 
+    Context personal_context;
+    TextView department,name;
+    TableLayout data;
     public clock_on(){
 
     }
@@ -60,15 +65,23 @@ public class clock_on extends Fragment implements LocationListener, OnMapReadyCa
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.clock_on, container, false);
+        /*test*/
+        View view = inflater.inflate(R.layout.mix_personal_clock_on, container, false);
         member_id = this.getArguments().getString("id");
         /*GPS服務*/
         mgr = (LocationManager)getActivity().getSystemService(LOCATION_SERVICE);
         txv = (TextView) view.findViewById(R.id.txv);
         btn = (Button) view.findViewById(R.id.btn);
         mylocation = (ImageButton) view.findViewById(R.id.mylocation);
+
+        /*獲取member.layout*/
+        personal_context = (Context) view.getContext();
+        department = (TextView) view.findViewById(R.id.department);
+        name = (TextView) view.findViewById(R.id.name);
+        data = (TableLayout) view.findViewById(R.id.data);
         /*判斷是否能打卡*/
         new first_check_in(getActivity(), btn).execute(member_id);
+
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         checkPermission();
@@ -202,8 +215,11 @@ public class clock_on extends Fragment implements LocationListener, OnMapReadyCa
                     //                if(flag>0) {
                     out_flag = String.valueOf(flag);
                     new check_in(getActivity(), btn).execute(member_id, out_flag);
-//                    new member().execute(member_id);
-                    //                }
+                    /*判斷是否能打卡*/
+                    new first_check_in(getActivity(), btn).execute(member_id);
+                    Toast.makeText(getActivity(),name.getText(),Toast.LENGTH_SHORT).show();
+                    new member(getActivity(),department,name,data).execute(member_id);
+                                        //                }
                 }
             }
         });
