@@ -9,6 +9,7 @@
     <LinearLayout
         android:layout_width="368dp"
         android:layout_height="495dp"
+        android:background="@drawable/snow"
         android:orientation="vertical"
         android:weightSum="1"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -163,7 +164,6 @@
                 android:layout_weight="3"
                 android:gravity="center"
                 android:inputType="number"
-                android:text="錢錢錢錢"
                 android:textSize="30sp" />
         </LinearLayout>
 

@@ -14,6 +14,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +39,8 @@ public class Main2Activity extends AppCompatActivity {
     public String id;
     public int intent_permissions;
     public Bundle personal_bundle,clock_on_bundle,manage_bundle;
+    public TextView department,name;
+    public Button go_money;
     public TableLayout data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +72,24 @@ public class Main2Activity extends AppCompatActivity {
         //取得tabLayout的實體
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+//        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//                mSectionsPagerAdapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//
+//            }
+//        });
+
+//        mSectionsPagerAdapter.notifyDataSetChanged();
     }
 
 
@@ -130,6 +152,7 @@ public class Main2Activity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
+
             switch (position) {
                 case 0:
                     personal tab1 = new personal();
@@ -173,5 +196,31 @@ public class Main2Activity extends AppCompatActivity {
             }
             return null;
         }
+//        public int getItemPosition(Object object) {
+//            return POSITION_NONE;
+//        }
+//        @Override
+//        public boolean isViewFromObject(View view, Object object) {
+//            return view == object;
+//        }
+//
+//        @Override
+//        public Object instantiateItem(ViewGroup container, int position) {
+//            View view = View.inflate(Main2Activity.this, R.layout.personal, null);
+//            Toast.makeText(getApplicationContext(),"qwe",Toast.LENGTH_SHORT).show();
+////            data = (TableLayout) view.findViewById(R.id.data);
+////            department = (TextView) view.findViewById(R.id.department);
+////            name = (TextView) view.findViewById(R.id.name);
+////            go_money = (Button) view.findViewById(R.id.go_money);
+////            new member(getApplicationContext(),department,name,data).execute(id);
+//            return view;
+//        }
+//
+//        @Override
+//        public void destroyItem(ViewGroup container, int position, Object object) {
+//            container.removeView((View) object);
+//        }
+
+
     }
 }

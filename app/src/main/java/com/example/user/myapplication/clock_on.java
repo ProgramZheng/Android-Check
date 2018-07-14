@@ -212,14 +212,14 @@ public class clock_on extends Fragment implements LocationListener, OnMapReadyCa
                     } else {
                         Toast.makeText(getActivity(), "GPS驗證失敗，請確認位置", Toast.LENGTH_SHORT).show();
                     }
-                    //                if(flag>0) {
-                    out_flag = String.valueOf(flag);
-                    new check_in(getActivity(), btn).execute(member_id, out_flag);
-                    /*判斷是否能打卡*/
-                    new first_check_in(getActivity(), btn).execute(member_id);
-                    Toast.makeText(getActivity(),name.getText(),Toast.LENGTH_SHORT).show();
-                    new member(getActivity(),department,name,data).execute(member_id);
-                                        //                }
+                    if(flag>0) {
+                        out_flag = String.valueOf(flag);
+                        new check_in(getActivity(), btn).execute(member_id, out_flag);
+                        /*判斷是否能打卡*/
+                        new first_check_in(getActivity(), btn).execute(member_id);
+                        new member(getActivity(),department,name,data).execute(member_id);
+                        getActivity().recreate();
+                    }
                 }
             }
         });
